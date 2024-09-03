@@ -1,0 +1,60 @@
+@page "/chat"
+@using todelete
+<Virtualize Items="@history">
+    <div class="vstack gap-1">
+        <div class="card mb-2">
+            <div class="card-body">
+                <div class="form-label">@context.Sender</div>
+                <p class="card-text list-group-item list-group-item-primary">@context.Message</p>
+            </div>
+        </div>
+    </div>
+
+</Virtualize>
+<div class="vstack gap-1">
+    <div class="card mb-2">
+        <div class="card-body">
+            <div class="form-label">Asistant</div>
+            <p class="card-text list-group-item list-group-item-primary">Hi there - how can I help you?</p>
+        </div>
+    </div>
+    <div class="card text-end mb-2">
+        <div class="card-body">
+            <div class="form-label">Joe Soap</div>
+            <p class="card-text list-group-item list-group-item-info">I need some help with my car...</p>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-body">
+            <div class="form-label">Asistant</div>
+            <p class="card-text list-group-item list-group-item-primary">Sure - I can be a car expert...</p>
+        </div>
+    </div>
+    <div class="card text-end">
+        <div class="card-body">
+            <div class="mb-2">
+                <label for="exampleFormControlTextarea1" class="form-label">Type your question or query... Press the
+                    Arrow up to repeat last prompt</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1"
+                    rows="3">Ex. "How do I change a tyre?"</textarea>
+                <br />
+                <div class="form-text text-end"><a href="#" class="btn btn-primary">Submit</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+    private List<ChatModel> history = new List<ChatModel> {
+new ChatModel { Sender = "Asistant", Message = "Hi there - how can I help you?" },
+new ChatModel { Sender = "Joe Soap", Message = "I need some help with my car..." },
+new ChatModel { Sender = "Asistant", Message = "Sure - I can be a car expert..." }
+};
+
+
+    public class ChatModel
+    {
+        public string Message { get; set; }
+        public string Sender { get; set; }
+
+    }
+}
